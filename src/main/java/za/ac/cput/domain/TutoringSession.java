@@ -1,12 +1,22 @@
 package za.ac.cput.domain;
 
-public class TutoringSession {
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-    private long sessionId;
-    private long bookingRequestId;
-    private long studentId;
-    private long tutorProfileId;
-    private long subjectId;
+import za.ac.cput.enums.SessionStatus;
+
+/**
+ * TutoringSession.java
+ * TutoringSession model class
+ * Author: Esaile Siani Djiakeng
+ * Date: 30 July 2026
+ */
+public class TutoringSession {
+    private Long sessionId;
+    private BookingRequest bookingRequest;
+    private User student;
+    private TutorProfile tutorProfile;
+    private Subject subject;
     private LocalDate startTime;
     private LocalDate endTime;
     private SessionStatus status;
@@ -14,14 +24,15 @@ public class TutoringSession {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public TutoringSession() {}
+    public TutoringSession() {
+    }
 
-    public TutoringSession(Builder builder) {
+    private TutoringSession(Builder builder) {
         this.sessionId = builder.sessionId;
-        this.bookingRequestId = builder.bookingRequestId;
-        this.studentId = builder.studentId;
-        this.tutorProfileId = builder.tutorProfileId;
-        this.subjectId = builder.subjectId;
+        this.bookingRequest = builder.bookingRequest;
+        this.student = builder.student;
+        this.tutorProfile = builder.tutorProfile;
+        this.subject = builder.subject;
         this.startTime = builder.startTime;
         this.endTime = builder.endTime;
         this.status = builder.status;
@@ -30,22 +41,24 @@ public class TutoringSession {
         this.updatedAt = builder.updatedAt;
     }
 
-    public long getSessionId() {}
-
-    public long getBookingRequestId() {
-        return bookingRequestId;
+    public Long getSessionId() {
+        return sessionId;
     }
 
-    public long getStudentId() {
-        return studentId;
+    public BookingRequest getBookingRequest() {
+        return bookingRequest;
     }
 
-    public long getTutorProfileId() {
-        return tutorProfileId;
+    public User getStudent() {
+        return student;
     }
 
-    public long getSubjectId() {
-        return subjectId;
+    public TutorProfile getTutorProfile() {
+        return tutorProfile;
+    }
+
+    public Subject getSubject() {
+        return subject;
     }
 
     public LocalDate getStartTime() {
@@ -73,11 +86,11 @@ public class TutoringSession {
     }
 
     public static class Builder {
-        private long sessionId;
-        private long bookingRequestId;
-        private long studentId;
-        private long tutorProfileId;
-        private long subjectId;
+        private Long sessionId;
+        private BookingRequest bookingRequest;
+        private User student;
+        private TutorProfile tutorProfile;
+        private Subject subject;
         private LocalDate startTime;
         private LocalDate endTime;
         private SessionStatus status;
@@ -85,28 +98,28 @@ public class TutoringSession {
         private LocalDateTime createdAt;
         private LocalDateTime updatedAt;
 
-        public Builder setSessionId(long sessionId) {
+        public Builder setSessionId(Long sessionId) {
             this.sessionId = sessionId;
             return this;
         }
 
-        public Builder setBookingRequestId(long bookingRequestId) {
-            this.bookingRequestId = bookingRequestId;
+        public Builder setBookingRequest(BookingRequest bookingRequest) {
+            this.bookingRequest = bookingRequest;
             return this;
         }
 
-        public Builder setStudentId(long studentId) {
-            this.studentId = studentId;
+        public Builder setStudent(User student) {
+            this.student = student;
             return this;
         }
 
-        public Builder setTutorProfileId(long tutorProfileId) {
-            this.tutorProfileId = tutorProfileId;
+        public Builder setTutorProfile(TutorProfile tutorProfile) {
+            this.tutorProfile = tutorProfile;
             return this;
         }
 
-        public Builder setSubjectId(long subjectId) {
-            this.subjectId = subjectId;
+        public Builder setSubject(Subject subject) {
+            this.subject = subject;
             return this;
         }
 
@@ -142,10 +155,10 @@ public class TutoringSession {
 
         public Builder copy(TutoringSession tutoringSession) {
             this.sessionId = tutoringSession.sessionId;
-            this.bookingRequestId = tutoringSession.bookingRequestId;
-            this.studentId = tutoringSession.studentId;
-            this.tutorProfileId = tutoringSession.tutorProfileId;
-            this.subjectId = tutoringSession.subjectId;
+            this.bookingRequest = tutoringSession.bookingRequest;
+            this.student = tutoringSession.student;
+            this.tutorProfile = tutoringSession.tutorProfile;
+            this.subject = tutoringSession.subject;
             this.startTime = tutoringSession.startTime;
             this.endTime = tutoringSession.endTime;
             this.status = tutoringSession.status;
@@ -154,10 +167,9 @@ public class TutoringSession {
             this.updatedAt = tutoringSession.updatedAt;
             return this;
         }
+
         public TutoringSession build() {
             return new TutoringSession(this);
         }
     }
-};
-
-
+}
